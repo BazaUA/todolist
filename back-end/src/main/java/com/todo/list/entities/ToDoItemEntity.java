@@ -14,7 +14,7 @@ public class ToDoItemEntity {
     @GeneratedValue
     private long id;
     private String name;
-    private int count;
+    //private int count;
     private boolean isDone;
     private String description;
     private String date;
@@ -57,14 +57,6 @@ public class ToDoItemEntity {
         this.name = name;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     public boolean isDone() {
         return isDone;
     }
@@ -79,15 +71,13 @@ public class ToDoItemEntity {
         if (o == null || getClass() != o.getClass()) return false;
         ToDoItemEntity toDoItem = (ToDoItemEntity) o;
         return id == toDoItem.id &&
-                count == toDoItem.count &&
                 isDone == toDoItem.isDone &&
                 Objects.equals(name, toDoItem.name);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, name, count, isDone);
+        return Objects.hash(id, name, isDone);
     }
 
     @Override
@@ -95,7 +85,6 @@ public class ToDoItemEntity {
         return "ToDoItemEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", count=" + count +
                 ", isDone=" + isDone +
                 '}';
     }

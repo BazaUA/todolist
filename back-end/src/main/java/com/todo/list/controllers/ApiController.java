@@ -58,24 +58,24 @@ public class ApiController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/increment")
-    public ResponseEntity<Void> incrementItemCount(@RequestBody long id) {
-        boolean flag = itemsService.incrementItemCount(id);
-        if (flag) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-    }
-
-    @PostMapping("/decrement")
-    public ResponseEntity<Void> decrementItemCount(@RequestBody long id) {
-        boolean flag = itemsService.decrementItemCount(id);
-        if (flag) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-    }
+//    @PostMapping("/increment")
+//    public ResponseEntity<Void> incrementItemCount(@RequestBody long id) {
+//        boolean flag = itemsService.incrementItemCount(id);
+//        if (flag) {
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.CONFLICT);
+//        }
+//    }
+//
+//    @PostMapping("/decrement")
+//    public ResponseEntity<Void> decrementItemCount(@RequestBody long id) {
+//        boolean flag = itemsService.decrementItemCount(id);
+//        if (flag) {
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.CONFLICT);
+//        }
+//    }
 
 }

@@ -49,13 +49,13 @@ public class ToDoItemService implements IToDoItemsService {
         }
     }
 
-    @Override
-    public boolean incrementItemCount(long itemId) {
-        return toDoItemsDAOCustom.incrementCount(itemId) > 0 ? true : false;
-    }
-
-    @Override
-    public boolean decrementItemCount(long itemId) {
-        return toDoItemsDAOCustom.decrementCount(itemId) > 0 ? true : false;
-    }
+//    @Override
+//    public boolean incrementItemCount(long itemId) {
+//        return toDoItemsDAOCustom.incrementCount(itemId) > 0 ? true : false;
+//    }
+//
+//    @Override
+//    public boolean decrementItemCount(long itemId) {
+//        return toDoItemsDAOCustom.decrementCount(itemId) > 0 ? true : false;
+//    }
 }
