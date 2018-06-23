@@ -2,11 +2,9 @@ package com.todo.list.test.client;
 
 import com.todo.list.entities.ToDoItemEntity;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
-import java.util.List;
 
 public class RestClient {
     public void getItemById(int id) {
@@ -17,7 +15,7 @@ public class RestClient {
         HttpEntity<String> httpEntity = new HttpEntity<String>(httpHeaders);
         ResponseEntity<ToDoItemEntity> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity,
                 ToDoItemEntity.class, id);
-        if(responseEntity!=null) {
+        if (responseEntity != null) {
             ToDoItemEntity item = responseEntity.getBody();
             System.out.println(item);
         }
@@ -32,12 +30,12 @@ public class RestClient {
         ResponseEntity<ToDoItemEntity[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity,
                 ToDoItemEntity[].class);
         ToDoItemEntity[] items = responseEntity.getBody();
-        for(ToDoItemEntity item : items) {
+        for (ToDoItemEntity item : items) {
             System.out.println(item);
         }
     }
 
-    public void addItem(){
+    public void addItem() {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
@@ -49,11 +47,11 @@ public class RestClient {
         item.setDate(date);
         item.setDescription("Test description");
         item.setDone(false);
-        HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item,httpHeaders);
-        restTemplate.put(url,requestEntity);
+        HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item, httpHeaders);
+        restTemplate.put(url, requestEntity);
     }
 
-    public void updateItem(int id){
+    public void updateItem(int id) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
@@ -66,37 +64,37 @@ public class RestClient {
         item.setDescription("Test description");
         item.setDone(false);
         item.setId(id);
-        HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item,httpHeaders);
-        restTemplate.postForLocation(url,requestEntity);
+        HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item, httpHeaders);
+        restTemplate.postForLocation(url, requestEntity);
     }
 
-    public void incrementItem(long id){
+    public void incrementItem(long id) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/api/increment";
-        HttpEntity<Long> requestEntity = new HttpEntity<>(id,httpHeaders);
-        restTemplate.postForLocation(url,requestEntity);
+        HttpEntity<Long> requestEntity = new HttpEntity<>(id, httpHeaders);
+        restTemplate.postForLocation(url, requestEntity);
     }
 
-    public void decrementItem(long id){
+    public void decrementItem(long id) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/api/decrement";
-        HttpEntity<Long> requestEntity = new HttpEntity<>(id,httpHeaders);
-        restTemplate.postForLocation(url,requestEntity);
+        HttpEntity<Long> requestEntity = new HttpEntity<>(id, httpHeaders);
+        restTemplate.postForLocation(url, requestEntity);
     }
 
-    public void deleteItem(int id){
-        HttpHeaders  httpHeaders = new HttpHeaders();
+    public void deleteItem(int id) {
+        HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        String url = "http://localhost:8080/api/item/"+id;
+        String url = "http://localhost:8080/api/item/" + id;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(url);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         RestClient client = new RestClient();
 //        client.addItem();
 //        client.getItemById(1);
@@ -104,7 +102,7 @@ public class RestClient {
 //        client.getItemById(1);
 //        client.addItem();
 //        client.getAllItem();
-      client.deleteItem(1);
+//        client.deleteItem(1);
 //        client.getAllItem();
 //        client.incrementItem(6);
 //        client.decrementItem(7);

@@ -41,16 +41,21 @@ public class ToDoItemService implements IToDoItemsService {
 
     @Override
     public ToDoItemEntity updateItem(ToDoItemEntity updatedEntity) {
-        return toDoItemsDAO.save(updatedEntity);
+        long id = updatedEntity.getId();
+        if(toDoItemsDAO.existsById(id)) {
+            return toDoItemsDAO.save(updatedEntity);
+        }else {
+            return null;
+        }
     }
 
     @Override
-    public void incrementItemCount(long itemId) {
-        toDoItemsDAOCustom.incrementCount(itemId);
+    public boolean incrementItemCount(long itemId) {
+        return toDoItemsDAOCustom.incrementCount(itemId) > 0 ? true : false;
     }
 
     @Override
-    public void decrementItemCount(long itemId) {
-        toDoItemsDAOCustom.decrementCount(itemId);
+    public boolean decrementItemCount(long itemId) {
+        return toDoItemsDAOCustom.decrementCount(itemId) > 0 ? true : false;
     }
 }

@@ -60,14 +60,22 @@ public class ApiController {
 
     @PostMapping("/increment")
     public ResponseEntity<Void> incrementItemCount(@RequestBody long id) {
-        itemsService.incrementItemCount(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        boolean flag = itemsService.incrementItemCount(id);
+        if (flag) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 
     @PostMapping("/decrement")
     public ResponseEntity<Void> decrementItemCount(@RequestBody long id) {
-        itemsService.decrementItemCount(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        boolean flag = itemsService.decrementItemCount(id);
+        if (flag) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 
 }
