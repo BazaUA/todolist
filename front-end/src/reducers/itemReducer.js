@@ -4,8 +4,10 @@ import initialState from './initState';
 export default function itemReducer(state = initialState.items, action) {
   switch (action.type) {
     case types.CREATE_ITEM_SUCCESS:
-      return;
-
+      return [
+        ...state,
+        Object.assign({}, action.item)
+      ];
     case types.DELETE_ITEM_SUCCESS:
       return;
 

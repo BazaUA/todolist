@@ -2,6 +2,7 @@
   "name": "front-end",
   "version": "0.1.0",
   "dependencies": {
+    "ajax": "0.0.4",
     "axios": "^0.18.0",
     "babel-polyfill": "6.8.0",
     "bootstrap": "3.3.6",

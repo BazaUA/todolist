@@ -66,26 +66,33 @@ public class ToDoItemEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ToDoItemEntity toDoItem = (ToDoItemEntity) o;
-        return id == toDoItem.id &&
-                isDone == toDoItem.isDone &&
-                Objects.equals(name, toDoItem.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, isDone);
-    }
-
-    @Override
     public String toString() {
         return "ToDoItemEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", isDone=" + isDone +
+                ", description='" + description + '\'' +
+                ", date='" + date + '\'' +
+                ", dateFormat=" + dateFormat +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ToDoItemEntity that = (ToDoItemEntity) o;
+        return id == that.id &&
+                isDone == that.isDone &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(dateFormat, that.dateFormat);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, name, isDone, description, date, dateFormat);
     }
 }

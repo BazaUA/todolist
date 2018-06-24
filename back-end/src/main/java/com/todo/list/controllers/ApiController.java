@@ -24,7 +24,7 @@ public class ApiController {
         }
         return new ResponseEntity(result, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @GetMapping("/items/{id}")
     public ResponseEntity<ToDoItemEntity> getItemById(@PathVariable("id") long id) {
         ToDoItemEntity result = itemsService.getItemById(id);
@@ -33,16 +33,17 @@ public class ApiController {
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PutMapping("/item")
-    public ResponseEntity<Void> addItem(@RequestBody ToDoItemEntity newItem) {
+    public ResponseEntity<ToDoItemEntity> addItem(@RequestBody ToDoItemEntity newItem) {
+        System.out.println(newItem);
         ToDoItemEntity item = itemsService.addItem(newItem);
         if (item == null) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
-
+    @CrossOrigin
     @PostMapping("/item")
     public ResponseEntity<Void> updateItem(@RequestBody ToDoItemEntity updatedItem) {
         ToDoItemEntity item = itemsService.updateItem(updatedItem);
@@ -51,7 +52,7 @@ public class ApiController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
+    @CrossOrigin
     @DeleteMapping("/item/{item_id}")
     public ResponseEntity<Void> deleteItem(@PathVariable("item_id") long item_id) {
         itemsService.deleteItem(item_id);
