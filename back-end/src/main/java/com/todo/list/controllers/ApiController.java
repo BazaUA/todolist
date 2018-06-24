@@ -15,7 +15,7 @@ public class ApiController {
     @Autowired
     private IToDoItemsService itemsService;
 
-
+    @CrossOrigin
     @GetMapping("/items")
     public ResponseEntity<List<ToDoItemEntity>> getAllItems() {
         List<ToDoItemEntity> result = itemsService.getAllItems();
