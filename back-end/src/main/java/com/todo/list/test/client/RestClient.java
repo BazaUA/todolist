@@ -42,8 +42,7 @@ public class RestClient {
         String url = "http://localhost:8080/api/item";
         ToDoItemEntity item = new ToDoItemEntity();
         item.setName("Test name");
-        Date date = new Date();
-        item.setDate(date);
+        item.setDate("21-06-2018");
         item.setDescription("Test description");
         item.setDone(false);
         HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item, httpHeaders);
@@ -57,7 +56,7 @@ public class RestClient {
         String url = "http://localhost:8080/api/item";
         ToDoItemEntity item = new ToDoItemEntity();
         item.setName("Test name updated");
-        item.setDate(new Date());
+        item.setDate("21-06-2018");
         System.out.println(new Date());
         item.setDescription("Test description");
         item.setDone(false);

@@ -18,36 +18,14 @@ public class ToDoItemEntity {
     private boolean isDone;
     private String description;
     private String date;
-    @Transient
-    private final SimpleDateFormat dateFormat
-            = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 
     public long getId() {
-
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
     }
-
-    public Date getDate() throws ParseException {
-        return dateFormat.parse(this.date);
-    }
-
-    public void setDate(Date date) {
-        this.date = dateFormat.format(date);
-        System.out.println(date);
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 
     public String getName() {
         return name;
@@ -65,6 +43,23 @@ public class ToDoItemEntity {
         isDone = done;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+
     @Override
     public String toString() {
         return "ToDoItemEntity{" +
@@ -73,7 +68,6 @@ public class ToDoItemEntity {
                 ", isDone=" + isDone +
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
-                ", dateFormat=" + dateFormat +
                 '}';
     }
 
@@ -86,13 +80,12 @@ public class ToDoItemEntity {
                 isDone == that.isDone &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(description, that.description) &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(dateFormat, that.dateFormat);
+                Objects.equals(date, that.date) ;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, isDone, description, date, dateFormat);
+        return Objects.hash(id, name, isDone, description, date);
     }
 }

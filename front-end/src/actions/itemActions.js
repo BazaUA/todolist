@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as types from './actionTypes';
+import toastr from 'toastr';
 
 export function loadItemsSuccess(items) {
   return {type: types.LOAD_ITEMS_SUCCESS, items};
@@ -24,16 +25,37 @@ export function addItemSuccess(item) {
 
 export function addItem(item) {
   return function (dispatch) {
-    console.log(item);
     const url = 'http://localhost:8080/api/item';
-    //const itemToJson = JSON.stringify(item);
-
-    axios.put(url, { "newItem": item })
-      .then((response) => {
-        dispatch(addItemSuccess(response));
+    fetch(url, {
+      credentials: 'same-origin',
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'dataType': 'json'
+      },
+      body: JSON.stringify({
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        date: item.date,
+        done : item.isDone
       })
-      .catch((error) => {
+    })
+      .then(response => {
+        console.log(response);
+        dispatch(addItemSuccess(item));
+        toastr.success("Added successful");
+      })
+      .catch(error => {
         throw (error);
       });
+
+    // axios.put(url, { "newItem": item })
+    //   .then((response) => {
+    //     dispatch(addItemSuccess(response));
+    //   })
+    //   .catch((error) => {
+    //     throw (error);
+    //   });
   };
 }

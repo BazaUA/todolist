@@ -24,7 +24,7 @@ class HomePage extends React.Component {
     const field = event.target.name;
     let newItem = Object.assign({}, this.state.item);
     newItem[field] = event.target.value;
-    return this.setState({item : newItem});
+    this.setState({item: newItem});
   }
 
   render() {
@@ -34,7 +34,7 @@ class HomePage extends React.Component {
         <input type="text" name="name" value={this.state.item.name} onChange={this.updateState} />
         <input type="submit" value="Add course" onClick={this.saveItem}/>
         {items.map(item =>
-          <p key={item.id}>{item.name}</p>
+          <p key={item.id}>{item.name} uhiuh</p>
         )}
       </div>
     );

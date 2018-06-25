@@ -4,9 +4,11 @@ import com.todo.list.entities.ToDoItemEntity;
 import com.todo.list.services.IToDoItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,6 +26,7 @@ public class ApiController {
         }
         return new ResponseEntity(result, HttpStatus.OK);
     }
+
     @CrossOrigin
     @GetMapping("/items/{id}")
     public ResponseEntity<ToDoItemEntity> getItemById(@PathVariable("id") long id) {
@@ -33,16 +36,20 @@ public class ApiController {
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
     @CrossOrigin
-    @PutMapping("/item")
-    public ResponseEntity<ToDoItemEntity> addItem(@RequestBody ToDoItemEntity newItem) {
+    @RequestMapping(value = "/item", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+    public @ResponseBody ResponseEntity<ToDoItemEntity> addItem(@Valid @RequestBody ToDoItemEntity newItem) {
         System.out.println(newItem);
-        ToDoItemEntity item = itemsService.addItem(newItem);
+        ToDoItemEntity item=null;
+        if (newItem.getName() != null)
+            item = itemsService.addItem(newItem);
         if (item == null) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<>(item, HttpStatus.CREATED);
+        return new ResponseEntity<ToDoItemEntity>(item, HttpStatus.CREATED);
     }
+
     @CrossOrigin
     @PostMapping("/item")
     public ResponseEntity<Void> updateItem(@RequestBody ToDoItemEntity updatedItem) {
@@ -52,6 +59,7 @@ public class ApiController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @CrossOrigin
     @DeleteMapping("/item/{item_id}")
     public ResponseEntity<Void> deleteItem(@PathVariable("item_id") long item_id) {
