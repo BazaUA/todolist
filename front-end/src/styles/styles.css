@@ -1,0 +1,150 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans";
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #080808 !important;
+  color: #fff !important;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+.title {
+  width: 350px;
+  margin: 0 auto 20px;
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #aeb6bf;
+}
+.title span {
+  color: #ab47bc;
+}
+.content {
+  max-width: 1200px;
+  margin: 30px auto;
+}
+.todo {
+  width: 350px;
+  margin: 30px auto;
+}
+.form-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #90a4ae;
+}
+.form-todo input {
+  min-width: 230px;
+  padding: 8px 10px;
+  border: none;
+  outline: none;
+  background: #34495e;
+  color: #bdc3c7;
+}
+.form-todo button {
+  padding: 8px 20px;
+  outline: none;
+  border: none;
+  background: #17202a;
+  color: #cfd8dc;
+  font-family: "Open Sans";
+  transition: background 0.3s ease;
+}
+.form-todo button:hover {
+  background: #000;
+}
+
+.form-todo ::-webkit-input-placeholder {
+  color: #bdc3c7;
+}
+.form-todo ::-moz-placeholder {
+  color: #bdc3c7;
+}
+.todo-list {
+  margin-top: 15px;
+}
+.todo-list li {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px 20px 10px 8px;
+  background: #1c2937;
+  cursor: pointer;
+  animation: fadeIn cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+.todo-list li:hover {
+  background: #212121;
+}
+.todo-list .close {
+  font-style: normal;
+  font-size: 24px;
+  font-weight: bold;
+  color: #7b7d7d;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.todo-list .close:hover {
+  color: #9c27b0;
+}
+.todo-list .info {
+  flex-grow: 1;
+}
+.todo-list .time {
+  font-size: 12px;
+  color: #90a4ae;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input[type="checkbox"].css-checkbox {
+  position: absolute;
+  z-index: -1000;
+  left: -1000px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+input[type="checkbox"].css-checkbox + label.css-label {
+  padding-left: 41px;
+  height: 26px;
+  display: inline-block;
+  line-height: 26px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  /*font-size:26px;*/
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+input[type="checkbox"].css-checkbox:checked + label.css-label {
+  background-position: 0 -26px;
+}
+label.css-label {
+  background-image: url(http://csscheckbox.com/checkboxes/u/csscheckbox_5e67f778a4d9b72b5f87ea729418f5ce.png);
+  background-size: 26px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.cross-out-label {
+  text-decoration: line-through solid red;
+}
