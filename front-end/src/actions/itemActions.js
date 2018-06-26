@@ -89,17 +89,17 @@ export function doneItem(itemId) {
     const url = 'http://localhost:8080/api/done';
     fetch(url, {
       credentials: 'same-origin',
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'dataType': 'json'
       },
       body: JSON.stringify({
-        id: itemId,
+        id: itemId
       })
     })
       .then(response => {
-        dispatch(addItemSuccess(body));
+        //dispatch();
         toastr.success("Done successful");
       })
       .catch(error => {
@@ -118,17 +118,17 @@ export function undoneItem(itemId) {
     const url = 'http://localhost:8080/api/undone';
     fetch(url, {
       credentials: 'same-origin',
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'dataType': 'json'
       },
       body: JSON.stringify({
-        id: itemId,
+        id: itemId
       })
     })
       .then(response => {
-        dispatch(addItemSuccess(itemId));
+        //dispatch();
         toastr.success("Undone successful");
       })
       .catch(error => {

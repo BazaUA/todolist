@@ -2,7 +2,8 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as itemAction from '../../actions/itemActions';
-import toastr from 'toastr';
+
+
 
 class HomePage extends React.Component {
   constructor(props, context) {
