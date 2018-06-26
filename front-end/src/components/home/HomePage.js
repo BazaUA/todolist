@@ -33,8 +33,9 @@ class HomePage extends React.Component {
       <div>
         <input type="text" name="name" value={this.state.item.name} onChange={this.updateState} />
         <input type="submit" value="Add course" onClick={this.saveItem}/>
-        {items.map(item =>
-          <p key={item.id}>{item.name} uhiuh</p>
+        {items.map(item =><div key={item.id}>
+          <p >{item.name}</p>
+          </div>
         )}
       </div>
     );
@@ -51,7 +52,7 @@ HomePage.propTypes = {
 
 
 function mapStateToProps(state, ownProps) {
-  let item = {id: 8, name: '', isDone: true, description: 'asdf', date: 'asdf'};
+  let item = {id: 8, name: '', done: true, description: 'asdf', date: 'asdf'};
   return {
     items: state.items,
     item: item

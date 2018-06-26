@@ -1,6 +1,6 @@
 package com.todo.list.dao;
 
 public interface IToDoItemsDAOCustom {
-    int incrementCount(long id);
-    int decrementCount(long id);
+    int done(long id);
+    int undone(long id);
 }

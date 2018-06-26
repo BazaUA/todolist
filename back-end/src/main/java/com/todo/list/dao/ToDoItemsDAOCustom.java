@@ -14,15 +14,15 @@ public class ToDoItemsDAOCustom implements IToDoItemsDAOCustom {
     EntityManager entityManager;
 
     @Override
-    public int incrementCount(long id) {
-        Query query = entityManager.createNativeQuery("UPDATE Items i SET i.count=(i.count+1) WHERE id=?");
+    public int done(long id) {
+        Query query = entityManager.createNativeQuery("UPDATE Items i SET i.is_done=1 WHERE id=?");
         query.setParameter(1, id);
         return query.executeUpdate();
     }
 
     @Override
-    public int decrementCount(long id) {
-        Query query = entityManager.createNativeQuery("UPDATE Items i SET i.count=(i.count-1) WHERE id=?");
+    public int undone(long id) {
+        Query query = entityManager.createNativeQuery("UPDATE Items i SET i.is_done=0 WHERE id=?");
         query.setParameter(1, id);
         return query.executeUpdate();
     }

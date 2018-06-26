@@ -9,10 +9,16 @@ export default function itemReducer(state = initialState.items, action) {
         Object.assign({}, action.item)
       ];
     case types.DELETE_ITEM_SUCCESS:
-      return;
+      return ;
 
     case types.LOAD_ITEMS_SUCCESS:
       return action.items;
+
+    case types.SET_DONE_SUCCESS:
+      return;
+
+    case types.SET_UNDONE_SUCCESS:
+      return ;
 
     default:
       return state;

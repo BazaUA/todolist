@@ -47,6 +47,7 @@ public class RestClient {
         item.setDone(false);
         HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item, httpHeaders);
         restTemplate.put(url, requestEntity);
+
     }
 
     public void updateItem(int id) {

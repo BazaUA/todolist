@@ -15,6 +15,10 @@ public interface IToDoItemsService {
 
     ToDoItemEntity updateItem(ToDoItemEntity updatedEntity);
 
+    boolean setItemDone(long itemId);
+
+    boolean setItemUndone(long itemId);
+
 //    boolean incrementItemCount(long itemId);
 //
 //    boolean decrementItemCount(long itemId);
