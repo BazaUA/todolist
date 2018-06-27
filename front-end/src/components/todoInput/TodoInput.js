@@ -16,7 +16,8 @@ class TodoInput extends React.Component {
     if (target.value) {
       let dataToAdd = {
         name: target.value,
-        timestamp: new Date().getTime()
+        done: false,
+        date: new Date().getTime()
       };
 
       this.props.add(dataToAdd);

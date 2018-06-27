@@ -7,6 +7,7 @@ class TodoListItem extends React.Component {
 
     this.state = { checked: false };
     this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
+    this.onCloseClick = this.onCloseClick.bind(this);
   }
 
   handleChangeCheckbox() {
@@ -22,13 +23,13 @@ class TodoListItem extends React.Component {
     }
   }
 
-  onCloseClick(item, event) {
-    this.props.delete(item);
+  onCloseClick(event) {
+    this.props.delete(this.props.item.id);
   }
 
   render() {
     let item = this.props.item;
-    let time = new Date(item.timestamp).toDateString();
+    let time = new Date(item.date).toDateString();
     // console.log(this.state.checked);
     return (
       <li id={this.timestamp}>
@@ -46,7 +47,7 @@ class TodoListItem extends React.Component {
           <div className="time">[ {time} ]</div>
         </div>
         <i
-          onClick={this.onCloseClick.bind(this, this.props.index)}
+          onClick={this.onCloseClick}
           className="close"
         >
           ×

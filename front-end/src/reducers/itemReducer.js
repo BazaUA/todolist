@@ -9,8 +9,7 @@ export default function itemReducer(state = initialState.items, action) {
         Object.assign({}, action.item)
       ];
     case types.DELETE_ITEM_SUCCESS:
-      return ;
-
+      return state.filter(item => item.id !== action.itemId);
     case types.LOAD_ITEMS_SUCCESS:
       return action.items;
 
@@ -18,7 +17,7 @@ export default function itemReducer(state = initialState.items, action) {
       return;
 
     case types.SET_UNDONE_SUCCESS:
-      return ;
+      return;
 
     default:
       return state;
