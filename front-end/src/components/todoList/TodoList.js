@@ -11,8 +11,10 @@ class TodoList extends React.Component {
           index={index}
           item={item}
           delete={this.props.delete}
+          done={this.props.done}
         />
       );
+
     });
 
     return <ul className="todo-list">{list}</ul>;

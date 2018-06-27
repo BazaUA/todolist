@@ -26,6 +26,7 @@ let todoItems = [
     timestamp: 1529803028000
   }
 ];
+
 //end
 
 class HomePage extends React.Component {
@@ -45,12 +46,14 @@ class HomePage extends React.Component {
     //Update by Vadik
     this.deleteItem = this.deleteItem.bind(this);
     this.addItems = this.addItems.bind(this);
+    this.doneRequest = this.doneRequest.bind(this);
     //end
   }
 
   componentDidMount() {
-    this.setState({ items: todoItems });
+    this.setState({items: todoItems});
   }
+
   /*
     saveItem(event){
       event.preventDefault();
@@ -66,11 +69,19 @@ class HomePage extends React.Component {
 
   //Update by Vadik
 
+  doneRequest(index, value) {
+    if (value) {
+      this.props.actions.doneItem(index);
+    } else {
+      this.props.actions.undoneItem(index);
+    }
+  }
+
   deleteItem(index) {
     this.props.actions.deleteItem(index);
     let items = Object.assign([], this.props.items);
     items.splice(index, 1);
-    this.setState({ items: items });
+    this.setState({items: items});
   }
 
   addItems(item) {
@@ -83,10 +94,10 @@ class HomePage extends React.Component {
   render() {
     const {items} = this.props;
     return (
-      <div className="todo" >
-        <TodoInput add={this.addItems} />
-        <FilterButtons />
-        <TodoList delete={this.deleteItem} items={items} />
+      <div className="todo">
+        <TodoInput add={this.addItems}/>
+        <FilterButtons/>
+        <TodoList done={this.doneRequest} delete={this.deleteItem} items={items}/>
       </div>
     );
     //end

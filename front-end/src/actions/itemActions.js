@@ -86,17 +86,14 @@ export function doneItemSuccess(itemId) {
 
 export function doneItem(itemId) {
   return function (dispatch) {
-    const url = 'http://localhost:8080/api/done';
+    const url = 'http://localhost:8080/api/done/'+itemId;
     fetch(url, {
       credentials: 'same-origin',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'dataType': 'json'
-      },
-      body: JSON.stringify({
-        id: itemId
-      })
+      }
     })
       .then(response => {
         //dispatch();
@@ -115,17 +112,14 @@ export function undoneItemSuccess(itemId) {
 
 export function undoneItem(itemId) {
   return function (dispatch) {
-    const url = 'http://localhost:8080/api/undone';
+    const url = 'http://localhost:8080/api/undone/'+itemId;
     fetch(url, {
       credentials: 'same-origin',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'dataType': 'json'
-      },
-      body: JSON.stringify({
-        id: itemId
-      })
+      }
     })
       .then(response => {
         //dispatch();

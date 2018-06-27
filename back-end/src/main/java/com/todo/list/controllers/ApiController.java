@@ -70,9 +70,9 @@ public class ApiController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/done")
-    public ResponseEntity<Void> incrementItemCount(@RequestBody long id) {
-        boolean flag = itemsService.setItemDone(id);
+    @PostMapping("/done/{item_id}")
+    public ResponseEntity<Void> incrementItemCount(@PathVariable("item_id") long item_id) {
+        boolean flag = itemsService.setItemDone(item_id);
         if (flag) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
@@ -81,9 +81,9 @@ public class ApiController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/undone")
-    public ResponseEntity<Void> decrementItemCount(@RequestBody long id) {
-        boolean flag = itemsService.setItemUndone(id);
+    @PostMapping("/undone/{item_id}")
+    public ResponseEntity<Void> decrementItemCount(@PathVariable("item_id") long item_id) {
+        boolean flag = itemsService.setItemUndone(item_id);
         if (flag) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

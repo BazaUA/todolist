@@ -1,18 +1,27 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import ReactDOM from "react-dom";
+import CheckBox from './CheckBox';
+import {connect} from 'react-redux';
+import * as itemAction from "../../actions/itemActions";
+import {bindActionCreators} from "redux";
 
 class TodoListItem extends React.Component {
-  constructor() {
+  constructor(props, context) {
     super();
-
-    this.state = { checked: false };
+    this.state = { done: props.item.done };
     this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
   }
 
   handleChangeCheckbox() {
+    console.log("sdf : "+ this.state.done);
+    if(this.state.done){
+      this.props.done(this.props.item.id,false);
+    }else {
+      this.props.done(this.props.item.id,true);
+    }
     this.setState({
-      checked: !this.state.checked
+      done: !this.state.done
     });
     // console.log(this.state.checked);
   }
@@ -32,16 +41,16 @@ class TodoListItem extends React.Component {
     let time = new Date(item.date).toDateString();
     // console.log(this.state.checked);
     return (
-      <li id={this.timestamp}>
+      <li id={item.id}>
         <input
           type="checkbox"
-          name={item.timestamp}
-          id={item.timestamp}
+          name={item.id}
+          id={item.id}
           className="css-checkbox"
-          checked={this.state.checked}
+          defaultChecked={this.state.done}
           onChange={this.handleChangeCheckbox}
         />
-        <label htmlFor={item.timestamp} className="css-label" />
+        <label htmlFor={item.id} className="css-label" />
         <div className="info">
           <div className={this.item}>{item.name}</div>
           <div className="time">[ {time} ]</div>
@@ -56,5 +65,14 @@ class TodoListItem extends React.Component {
     );
   }
 }
+
+TodoListItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  delete: PropTypes.func.isRequired,
+  done: PropTypes.func.isRequired
+};
+
+
+
 
 export default TodoListItem;
