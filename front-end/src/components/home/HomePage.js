@@ -12,22 +12,6 @@ import toastr from 'toastr';
 //Update by Vadik
 import "../../styles/styles.css";
 
-let todoItems = [
-  {
-    name: "To do todo's design and something else",
-    timestamp: 1529803020000
-  },
-  {
-    name: "Selebrate YouthDay",
-    timestamp: 1529803024000
-  },
-  {
-    name: "Get some sleep [Real life]",
-    timestamp: 1529803028000
-  }
-];
-//end
-
 class HomePage extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -37,6 +21,7 @@ class HomePage extends React.Component {
 
       //Update by Vadik
       items: []
+
       //end
     };
     /*    this.saveItem = this.saveItem.bind(this);
@@ -45,48 +30,43 @@ class HomePage extends React.Component {
     //Update by Vadik
     this.deleteItem = this.deleteItem.bind(this);
     this.addItems = this.addItems.bind(this);
+    this.doneRequest = this.doneRequest.bind(this);
     //end
   }
 
-  componentDidMount() {
-    this.setState({ items: todoItems });
-  }
-  /*
-    saveItem(event){
-      event.preventDefault();
-      this.props.actions.addItem(this.state.item);
-    }
-
-    updateState(event) {
-      const field = event.target.name;
-      let newItem = Object.assign({}, this.state.item);
-      newItem[field] = event.target.value;
-      this.setState({item: newItem});
-    }*/
+/*  componentDidMount() {
+    this.setState({items: todoItems});
+  }*/
 
   //Update by Vadik
+
+  doneRequest(index, value) {
+    if (value) {
+      this.props.actions.doneItem(index);
+    } else {
+      this.props.actions.undoneItem(index);
+    }
+  }
 
   deleteItem(index) {
     this.props.actions.deleteItem(index);
     let items = Object.assign([], this.props.items);
     items.splice(index, 1);
-    this.setState({ items: items });
+    this.setState({items: items});
   }
 
   addItems(item) {
     if (item) {
       this.props.actions.addItem(item);
-
     }
   }
 
   render() {
     const {items} = this.props;
     return (
-      <div className="todo" >
-        <TodoInput add={this.addItems} />
-        <FilterButtons />
-        <TodoList delete={this.deleteItem} items={items} />
+      <div className="todo">
+        <TodoInput add={this.addItems}/>
+        <TodoList done={this.doneRequest} delete={this.deleteItem} items={items}  />
       </div>
     );
     //end
