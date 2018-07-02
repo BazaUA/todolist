@@ -20,12 +20,15 @@ class HomePage extends React.Component {
       item: Object.assign({}, props.item),
 
       //Update by Vadik
-      items: []
+      items: this.props.items
 
       //end
     };
-    /*    this.saveItem = this.saveItem.bind(this);
-        this.updateState = this.updateState.bind(this);*/
+    this.baseState = this.state;
+
+    this.showDoneItems = this.showDoneItems.bind(this);
+    this.showUndoneItems = this.showUndoneItems.bind(this);
+    this.showAllItems = this.showAllItems.bind(this);
 
     //Update by Vadik
     this.deleteItem = this.deleteItem.bind(this);
@@ -37,7 +40,34 @@ class HomePage extends React.Component {
 /*  componentDidMount() {
     this.setState({items: todoItems});
   }*/
+  showAllItems () {
+    this.setState(this.baseState)
+    console.log("Show All" + this.state.items);
+  }
 
+  showDoneItems () {
+    console.log("Pobeda? " + this.state.items + " end");
+    console.log("Pobeda? " + this.state.items + " end");
+    let itemsList = this.props.items.filter((item) => {
+      if (item.done === true)
+        return item;
+    });
+    this.setState(prevState => ({
+      items: itemsList
+    }));
+    console.log("Show Done" + this.state.items);
+  }
+
+  showUndoneItems () {
+    let itemsList = this.props.items.filter((item) => {
+      if (item.done === false)
+        return item;
+    });
+    this.setState(prevState => ({
+      items: itemsList
+    }));
+    console.log("Show Undone" + this.state.items);
+  }
 
   //Update by Vadik
 
@@ -64,10 +94,16 @@ class HomePage extends React.Component {
 
   render() {
     const {items} = this.props;
+    // console.log(this.props.items);
     return (
       <div className="todo">
         <TodoInput add={this.addItems}/>
-        <TodoList done={this.doneRequest} delete={this.deleteItem} items={items}  />
+        <FilterButtons
+          showAllItems={this.showAllItems}
+          showDoneItems={this.showDoneItems}
+          showUndoneItems={this.showUndoneItems}
+        />
+        <TodoList done={this.doneRequest} delete={this.deleteItem} items={this.props.items}  />
 
       </div>
     );

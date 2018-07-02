@@ -10,14 +10,11 @@ class TodoList extends React.Component {
     super(props, context);
 
     // console.log("ToDo list items: " + Object.assign([], this.props.items));
+    // console.log("ToDo list items: "+this.props.items);
     this.state = {
       items: props.items
     };
-    this.baseState = this.state;
 
-    this.showDoneItems = this.showDoneItems.bind(this);
-    this.showUndoneItems = this.showUndoneItems.bind(this);
-    this.showAllItems = this.showAllItems.bind(this);
   }
 
   showAllItems () {
@@ -48,7 +45,7 @@ class TodoList extends React.Component {
   }
 
   render() {
-
+    // console.log("2 ToDo list items: "+this.state.items);
     let list = this.props.items.map((item, index) => {
       return (
           <TodoListItem
@@ -65,11 +62,6 @@ class TodoList extends React.Component {
 
     return (
       <div>
-        <FilterButtons
-          showAllItems={this.showAllItems}
-          showDoneItems={this.showDoneItems}
-          showUndoneItems={this.showUndoneItems}
-        />
         <ul className="todo-list">{list}</ul>
       </div>
     );

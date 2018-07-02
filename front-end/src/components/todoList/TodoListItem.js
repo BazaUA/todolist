@@ -7,7 +7,7 @@ import {bindActionCreators} from "redux";
 
 class TodoListItem extends React.Component {
   constructor(props, context) {
-    super();
+    super(props, context);
     this.state = { done: props.item.done };
     this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
