@@ -9,15 +9,6 @@ class TodoList extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("1 ToDo list items: " + Object.assign([], this.props.items));
-    console.log("2 ToDo list items: "+ this.props);
-    console.log("3 ToDo list items: "+ props.items);
-    console.log("4 ToDo list items: " + Object.assign([], props.items));
-    console.log("5 ToDo list items: " + props.items[0]);
-    console.log("6 ToDo list items: " + this.items);
-    console.log("7 ToDo list items: " + Object.assign([], props.items));
-    let itemsList = Object.assign([], props.items);
-    console.log("8 ToDo list items: " + this.props.items);
     this.state = {
       items: null
     };

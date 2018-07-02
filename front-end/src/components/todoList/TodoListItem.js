@@ -26,19 +26,13 @@ class TodoListItem extends React.Component {
     console.log("loshara"+this.state.done);
   }
 
-  crossOutLabelStyle(id) {
-    if (this.state.done === true) {
-      return "cross-out-label";
-    }
-  }
-
   onCloseClick(event) {
     this.props.delete(this.props.item.id);
   }
 
   doneCheckbox() {
     if (this.state.done)
-      return "done";
+      return "cross-out-label";
 
   }
 
@@ -58,7 +52,7 @@ class TodoListItem extends React.Component {
         />
         <label htmlFor={item.id} className="css-label" />
         <div className="info">
-          <div className={this.item}>{item.name}</div>
+          <div className={this.doneCheckbox()}>{item.name}</div>
           <div className="time">[ {time} ]</div>
         </div>
         <i
