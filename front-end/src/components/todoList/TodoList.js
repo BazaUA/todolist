@@ -60,6 +60,7 @@ class TodoList extends React.Component {
             date={this.props.date}
           />
       );
+
     });
 
     return (

@@ -15,7 +15,6 @@ class TodoListItem extends React.Component {
   }
 
   handleChangeCheckbox() {
-    console.log("sdf : ");
     if(this.state.done){
       this.props.done(this.props.item.id,false);
     }else {
@@ -78,9 +77,5 @@ TodoListItem.propTypes = {
   delete: PropTypes.func.isRequired,
   done: PropTypes.func.isRequired
 };
-
-
-
-
 
 export default TodoListItem;

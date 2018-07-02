@@ -38,6 +38,7 @@ class HomePage extends React.Component {
     this.setState({items: todoItems});
   }*/
 
+
   //Update by Vadik
 
   doneRequest(index, value) {
@@ -67,6 +68,7 @@ class HomePage extends React.Component {
       <div className="todo">
         <TodoInput add={this.addItems}/>
         <TodoList done={this.doneRequest} delete={this.deleteItem} items={items}  />
+
       </div>
     );
     //end
