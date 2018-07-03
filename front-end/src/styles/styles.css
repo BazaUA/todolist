@@ -79,14 +79,14 @@ ul {
 }
 .todo-list .close {
   font-style: normal;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
-  color: #7b7d9d;
+  color: #7b7d7d;
   cursor: pointer;
-  transition: color 0.6s ease;
+  transition: color 0.3s ease;
 }
 .todo-list .close:hover {
-  color: #9c17b0;
+  color: #9c27b0;
 }
 .todo-list .info {
   flex-grow: 1;
@@ -106,36 +106,27 @@ ul {
   }
 }
 
-input[type="checkbox"].css-checkbox {
-  position: absolute;
-  z-index: -1000;
-  left: -1000px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
+input[type=checkbox].css-checkbox {
+  position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
 }
 
-input[type="checkbox"].css-checkbox + label.css-label {
-  padding-left: 41px;
-  height: 26px;
-  display: inline-block;
-  line-height: 26px;
-  background-repeat: no-repeat;
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left:41px;
+  height:26px; 
+  display:inline-block;
+  line-height:26px;
+  background-repeat:no-repeat;
   background-position: 0 0;
   /*font-size:26px;*/
-  vertical-align: middle;
-  cursor: pointer;
+  vertical-align:middle;
+  cursor:pointer;
 }
 
-input[type="checkbox"].css-checkbox:checked + label.css-label {
+input[type=checkbox].css-checkbox:checked + label.css-label {
   background-position: 0 -26px;
 }
 label.css-label {
-  background-image: url(http://csscheckbox.com/checkboxes/u/csscheckbox_5e67f778a4d9b72b5f87ea729418f5ce.png);
+  background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_5e67f778a4d9b72b5f87ea729418f5ce.png);
   background-size: 26px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -148,4 +139,8 @@ label.css-label {
 .cross-out-label {
   text-decoration: line-through solid red;
   text-shadow: 0 0 3px #FF0000;
+}
+
+.visible-checkbox {
+  background-color: white;
 }
