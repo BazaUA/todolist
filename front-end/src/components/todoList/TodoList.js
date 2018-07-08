@@ -27,7 +27,6 @@ class TodoList extends React.Component {
     this.setState(prevState => ({
       items: this.props.items
     }));
-    console.log("Show All" + this.state.items);
   }
 
   showDoneItems () {
@@ -39,11 +38,9 @@ class TodoList extends React.Component {
     this.setState(prevState => ({
       items: itemsList
     }));
-    console.log("Show Done" + this.state.items);
   }
 
   showUndoneItems () {
-    // let itemsList = Object.assign([], this.props.items);
     let itemsCp = this.props.items;
     let itemsList = itemsCp.filter((item) => {
       return item.done === false;
@@ -51,7 +48,6 @@ class TodoList extends React.Component {
     this.setState(prevState => ({
       items: itemsList
     }));
-    console.log("Show Undone" + this.state.items);
   }
   itemsCpp () {
     if (this.state.items === null)

@@ -8,7 +8,6 @@ import {bindActionCreators} from "redux";
 class TodoListItem extends React.Component {
   constructor(props, context) {
     super(props, context);
-    console.log("loshok-pidarok");
     this.state = { done: props.item.done };
     
     this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
@@ -17,10 +16,6 @@ class TodoListItem extends React.Component {
   }
 
   handleChangeCheckbox() {
-/*    this.setState(prevState => ({
-      checked: !this.state.checked
-    }));
-    console.log("loh" + this.state.checked);*/
     if(this.state.done){
       this.props.done(this.props.item.id,false);
     }else {
@@ -29,7 +24,6 @@ class TodoListItem extends React.Component {
     this.setState({
       done: !this.state.done
     });
-    console.log("loshara"+this.state.done);
   }
 
   onCloseClick(event) {
@@ -42,14 +36,9 @@ class TodoListItem extends React.Component {
 
   }
 
-  test () {
-    console.log("rock-koza");
-  }
-
   render() {
     let item = this.props.item;
     let time = new Date(parseInt(item.date)).toDateString();
-    // console.log("shoto napyshy "+this.props.item.done);
     return (
       <li id={item.date}>
       <input type="checkbox" name={item.date} id={item.date}  checked={this.state.done} onChange={this.handleChangeCheckbox} />

@@ -9,7 +9,6 @@ import FilterButtons from "../filterButtons/FilterButtons";
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import toastr from 'toastr';
 
-//Update by Vadik
 import "../../styles/styles.css";
 
 class HomePage extends React.Component {
@@ -19,53 +18,13 @@ class HomePage extends React.Component {
     this.state = {
       item: Object.assign({}, props.item),
 
-      //Update by Vadik
       items: this.props.items
 
-      //end
     };
-
-
-    //Update by Vadik
     this.deleteItem = this.deleteItem.bind(this);
     this.addItems = this.addItems.bind(this);
     this.doneRequest = this.doneRequest.bind(this);
-    //end
   }
-
-/*  componentDidMount() {
-    this.setState({items: todoItems});
-  }*/
-/*  showAllItems () {
-    this.setState(this.baseState)
-    console.log("Show All" + this.state.items);
-  }
-
-  showDoneItems () {
-    console.log("Pobeda? " + this.props.items + " end");
-    let itemsList = Object.assign([], this.props.items);
-    itemsList.filter((item) => {
-       return item.done === true;
-    });
-    console.log("New attempt: " + itemsList[0].date);
-    this.setState(prevState => ({
-      items: itemsList
-    }));
-    console.log("Show Done" + this.state.items);
-  }
-
-  showUndoneItems () {
-    let itemsList = this.props.items.filter((item) => {
-      if (item.done === false)
-        return item;
-    });
-    this.setState(prevState => ({
-      items: itemsList
-    }));
-    console.log("Show Undone" + this.state.items);
-  }*/
-
-  //Update by Vadik
 
   doneRequest(index, value) {
     if (value) {
@@ -90,12 +49,10 @@ class HomePage extends React.Component {
 
   render() {
     const {items} = this.props;
-    // console.log(this.props.items);
     let itemsList = this.props.items.filter((item) => {
       if (item.done === true)
         return item;
     });
-    // console.log(itemsList[0]);
     return (
       <div className="todo">
         <TodoInput add={this.addItems}/>
