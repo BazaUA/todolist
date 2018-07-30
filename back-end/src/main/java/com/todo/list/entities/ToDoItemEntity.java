@@ -1,23 +1,25 @@
 package com.todo.list.entities;
 
-import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.todo.list.deserializer.ToDoItemDeserializer;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.Objects;
-import java.util.TimeZone;
 
 @Entity
+@JsonDeserialize(using = ToDoItemDeserializer.class)
 @Table(name = "Items")
 public class ToDoItemEntity {
     @Id
     @GeneratedValue
     private long id;
     private String name;
-    //private int count;
     private boolean isDone;
-    private String description;
-    private String date;
+    private Date date;
 
     public long getId() {
         return id;
@@ -43,21 +45,26 @@ public class ToDoItemEntity {
         isDone = done;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(Date date) {
+        if (this.date == null) {
+            this.date = new Date(date.getTime());
+        } else {
+            this.date.setTime(date.getTime());
+        }
     }
+
+//    public String getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
 
     @Override
@@ -66,8 +73,7 @@ public class ToDoItemEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", isDone=" + isDone +
-                ", description='" + description + '\'' +
-                ", date='" + date + '\'' +
+                ", date='" + date.toString() + '\'' +
                 '}';
     }
 
@@ -79,13 +85,12 @@ public class ToDoItemEntity {
         return id == that.id &&
                 isDone == that.isDone &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(date, that.date) ;
+                Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, isDone, description, date);
+        return Objects.hash(id, name, isDone, date);
     }
 }

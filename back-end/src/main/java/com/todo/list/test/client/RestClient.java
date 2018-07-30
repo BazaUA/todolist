@@ -1,6 +1,7 @@
 package com.todo.list.test.client;
 
 import com.todo.list.entities.ToDoItemEntity;
+import com.todo.list.utilities.Utility;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,7 +12,7 @@ public class RestClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/api/items/{id}";
+        String url = Utility.apiHostName +"/api/items/{id}";
         HttpEntity<String> httpEntity = new HttpEntity<String>(httpHeaders);
         ResponseEntity<ToDoItemEntity> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity,
                 ToDoItemEntity.class, id);
@@ -25,7 +26,7 @@ public class RestClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/api/items";
+        String url = Utility.apiHostName +"/api/items";
         HttpEntity<String> httpEntity = new HttpEntity<String>(httpHeaders);
         ResponseEntity<ToDoItemEntity[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity,
                 ToDoItemEntity[].class);
@@ -39,11 +40,11 @@ public class RestClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/api/item";
+        String url = Utility.apiHostName +"/api/item";
         ToDoItemEntity item = new ToDoItemEntity();
         item.setName("Test name");
-        item.setDate("21-06-2018");
-        item.setDescription("Test description");
+        //item.setDate(new Date());
+
         item.setDone(false);
         HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item, httpHeaders);
         restTemplate.put(url, requestEntity);
@@ -54,12 +55,12 @@ public class RestClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/api/item";
+        String url = Utility.apiHostName +"/api/item";
         ToDoItemEntity item = new ToDoItemEntity();
         item.setName("Test name updated");
-        item.setDate("21-06-2018");
+        //item.setDate(new Date());
         System.out.println(new Date());
-        item.setDescription("Test description");
+
         item.setDone(false);
         item.setId(id);
         HttpEntity<ToDoItemEntity> requestEntity = new HttpEntity<>(item, httpHeaders);
@@ -70,7 +71,7 @@ public class RestClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/api/increment";
+        String url = Utility.apiHostName +"/api/increment";
         HttpEntity<Long> requestEntity = new HttpEntity<>(id, httpHeaders);
         restTemplate.postForLocation(url, requestEntity);
     }
@@ -79,7 +80,7 @@ public class RestClient {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/api/decrement";
+        String url = Utility.apiHostName +"/api/decrement";
         HttpEntity<Long> requestEntity = new HttpEntity<>(id, httpHeaders);
         restTemplate.postForLocation(url, requestEntity);
     }
@@ -87,7 +88,7 @@ public class RestClient {
     public void deleteItem(int id) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        String url = "http://localhost:8080/api/item/" + id;
+        String url = Utility.apiHostName +"/api/item/" + id;
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(url);
     }
@@ -102,8 +103,8 @@ public class RestClient {
 //        client.getAllItem();
 //        client.deleteItem(1);
 //        client.getAllItem();
-//        client.incrementItem(6);
-//        client.decrementItem(7);
+//        client.incrementItem(1);
+//        client.decrementItem(1);
     }
 
 }

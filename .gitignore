@@ -10,6 +10,7 @@ back-end/.mvn/timing.properties
 back-end/.classpath
 back-end/.project
 back-end/.settings/
+back-end/src/main/resources/application.properties
 .idea/
 
 front-end/.DS_STORE

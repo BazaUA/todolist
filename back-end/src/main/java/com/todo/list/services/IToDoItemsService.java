@@ -11,7 +11,7 @@ public interface IToDoItemsService {
 
     ToDoItemEntity addItem(ToDoItemEntity item);
 
-    void deleteItem(long itemId);
+    boolean deleteItem(long itemId);
 
     ToDoItemEntity updateItem(ToDoItemEntity updatedEntity);
 

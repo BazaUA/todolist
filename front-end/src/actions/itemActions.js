@@ -24,6 +24,7 @@ export function addItemSuccess(item) {
 }
 
 export function addItem(item) {
+  console.log(item);
   return function (dispatch) {
     const url = 'http://localhost:8080/api/item';
     fetch(url, {
@@ -34,11 +35,9 @@ export function addItem(item) {
         'dataType': 'json'
       },
       body: JSON.stringify({
-        id: item.id,
         name: item.name,
-        description: item.description,
         date: item.date,
-        done: item.isDone
+        done: item.done
       })
     })
       .then(function (response) {

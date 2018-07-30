@@ -29,22 +29,29 @@ public class ToDoItemService implements IToDoItemsService {
 
     @Override
     public ToDoItemEntity addItem(ToDoItemEntity item) {
-        return toDoItemsDAO.save(item);
+        if (isNameValid(item.getName())) {
+            return toDoItemsDAO.save(item);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public void deleteItem(long itemId) {
-        if(toDoItemsDAO.existsById(itemId)){
+    public boolean deleteItem(long itemId) {
+        if (toDoItemsDAO.existsById(itemId)) {
             toDoItemsDAO.deleteById(itemId);
+            return true;
+        }else{
+            return false;
         }
     }
 
     @Override
     public ToDoItemEntity updateItem(ToDoItemEntity updatedEntity) {
         long id = updatedEntity.getId();
-        if(toDoItemsDAO.existsById(id)) {
+        if (isNameValid(updatedEntity.getName()) && toDoItemsDAO.existsById(id)) {
             return toDoItemsDAO.save(updatedEntity);
-        }else {
+        } else {
             return null;
         }
     }
@@ -57,5 +64,10 @@ public class ToDoItemService implements IToDoItemsService {
     @Override
     public boolean setItemUndone(long itemId) {
         return toDoItemsDAOCustom.undone(itemId) > 0 ? true : false;
+    }
+
+    private boolean isNameValid(String name) {
+        String nameWithoutSpaces = name.trim();
+        return nameWithoutSpaces != null && !nameWithoutSpaces.isEmpty() && nameWithoutSpaces.length() > 1;
     }
 }

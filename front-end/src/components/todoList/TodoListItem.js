@@ -8,18 +8,18 @@ import {bindActionCreators} from "redux";
 class TodoListItem extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { done: props.item.done };
-    
+    this.state = {done: props.item.done};
+
     this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
     this.onCloseClick = this.onCloseClick.bind(this);
-    this.doneCheckbox =this.doneCheckbox.bind(this);
+    this.doneCheckbox = this.doneCheckbox.bind(this);
   }
 
   handleChangeCheckbox() {
-    if(this.state.done){
-      this.props.done(this.props.item.id,false);
-    }else {
-      this.props.done(this.props.item.id,true);
+    if (this.state.done) {
+      this.props.done(this.props.item.id, false);
+    } else {
+      this.props.done(this.props.item.id, true);
     }
     this.setState({
       done: !this.state.done
@@ -37,12 +37,13 @@ class TodoListItem extends React.Component {
   }
 
   render() {
-    let item = this.props.item;
-    let time = new Date(parseInt(item.date)).toDateString();
+    const item = this.props.item;
+    const time = new Date(this.props.item.date);
     return (
       <li id={item.date}>
-      <input type="checkbox" name={item.date} id={item.date}  checked={this.state.done} onChange={this.handleChangeCheckbox} />
-      <input
+        <input type="checkbox" name={item.date} id={item.date} checked={this.state.done}
+               onChange={this.handleChangeCheckbox}/>
+        <input
           type="checkbox"
           name={item.date}
           id={item.date}
@@ -50,10 +51,10 @@ class TodoListItem extends React.Component {
           checked={this.state.done}
           onChange={this.handleChangeCheckbox}
         />
-        <label htmlFor={item.name} className="css-label" />
+        <label htmlFor={item.name} className="css-label"/>
         <div className="info">
           <div className={this.doneCheckbox()}>{item.name}</div>
-          <div className="time">[ {time} ]</div>
+          <div className="time">[ {time.toDateString()} ]</div>
         </div>
         <i
           onClick={this.onCloseClick}
