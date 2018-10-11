@@ -8,7 +8,7 @@ export function loadItemsSuccess(items) {
 
 export function loadItems() {
   return function (dispatch) {
-    const url = 'http://localhost:8080/api/items';
+    const url = 'http://backend:8080/api/items';
     axios.get(url)
       .then((items) => {
         dispatch(loadItemsSuccess(items.data));
@@ -26,7 +26,7 @@ export function addItemSuccess(item) {
 export function addItem(item) {
   console.log(item);
   return function (dispatch) {
-    const url = 'http://localhost:8080/api/item';
+    const url = 'http://backend:8080/api/item';
     fetch(url, {
       credentials: 'same-origin',
       method: 'PUT',
@@ -59,7 +59,7 @@ export function deleteItemSuccess(itemId) {
 
 export function deleteItem(itemId) {
   return function (dispatch) {
-    const url = 'http://localhost:8080/api/item/' + itemId;
+    const url = 'http://backend:8080/api/item/' + itemId;
     fetch(url, {
       credentials: 'same-origin',
       method: 'DELETE',
@@ -85,7 +85,7 @@ export function doneItemSuccess(itemId) {
 
 export function doneItem(itemId) {
   return function (dispatch) {
-    const url = 'http://localhost:8080/api/done/'+itemId;
+    const url = 'http://backend:8080/api/done/'+itemId;
     fetch(url, {
       credentials: 'same-origin',
       method: 'POST',
@@ -111,7 +111,7 @@ export function undoneItemSuccess(itemId) {
 
 export function undoneItem(itemId) {
   return function (dispatch) {
-    const url = 'http://localhost:8080/api/undone/'+itemId;
+    const url = 'http://backend:8080/api/undone/'+itemId;
     fetch(url, {
       credentials: 'same-origin',
       method: 'POST',

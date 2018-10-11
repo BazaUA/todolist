@@ -1,0 +1,17 @@
+version: '2'
+  services:
+    backend: 
+      build: 
+       context: ./back-end
+       dockerfile: Dockerfile
+       args:
+        JAR_FILE: target/todolist-0.0.1-SNAPSHOT.jar
+    forntend:
+      build: ./front-end
+    db: 
+      image: mysql
+        environment:
+          MYSQL_USER=springuser
+          MYSQL_PASSWORD=password
+          MYSQL_DATABASE=todo_list
+
