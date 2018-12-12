@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  
+  mysqldb: 
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=springuser
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=todo_list
+    volumes:
+      - /data/mysql
+  backend: 
+    image: todolist_api
+    volumes:
+      - /data/spring-boot-app
+
